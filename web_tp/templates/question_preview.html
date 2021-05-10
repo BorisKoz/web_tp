@@ -1,0 +1,26 @@
+{% load static %}
+<div class="row media d-flex flex-wrap content-mainbox mt-2">
+	<div class="d-flex px-1 mr-4 flex-column">
+		<img src="{{ question.author.avatar.url }}" class="image-format mb-2" alt="...">
+        {% block likes %}
+                    <div class="d-flex flex-row justify-content-center">
+                        <div class = "p-2 mr-1 button btn-success rounded w-25">↑</div>
+                        <div class=" p-2 mr-1 h6">r:{{ question.rating }}</div>
+                        <div class = "p-2 button btn-danger border rounded w-25">↓</div>
+
+                    </div>
+        {% endblock %}
+	</div>
+	<div class="media-body px-1">
+		<a href="{% url 'question' pk=question.id %}" class="h5 mt-0">{{ question.title }}</a>
+		<p>{{ question.question_text }}</p>
+		<div class="row">
+            <div class ="text-dark mr-1">
+                tags:
+            </div>
+            {% for tag in question.tags.all %}
+                <a href="{% url 'tag_questions' tag.id %}" class="text-dark mr-1"> {{ tag.tag_name }} </a>
+            {% endfor %}
+		</div>
+	</div>
+</div>

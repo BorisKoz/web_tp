@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>ask_me_bkz</title>
+
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+	<link href="{% static 'css/mystyles.css' %}" rel="stylesheet">
+</head>
+<body>
+	{% include 'navbar.html' %}
+
+	<main role="main">
+		<div class="container mt-4">
+			<div class="row">
+				<div class="col-8" style="margin-bottom: 10px">
+					{% block content %}
+					{% endblock content %}
+				</div>
+				<div class="col-4">
+					{% include 'favcol.html' %}
+				</div>
+			</div>
+		</div>
+	</main>
+
+	{% include 'footer.html' %}
+
+	<script src="{% static '/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

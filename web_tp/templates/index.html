@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'index' %}" class="col-3 h4 text-dark">New Questions</a>
+    <a href="{% url 'hot_index' %}" class="col-3 h4 text-dark">Hot Questions</a>
+    {% for question in content %}
+		{% include 'question_preview.html' %}
+	{% endfor %}
+
+	{% include 'Paginator.html' %}
+{% endblock content %}
+

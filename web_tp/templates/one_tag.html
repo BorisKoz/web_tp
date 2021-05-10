@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class ="h3 text-dark">Questions on tag: {{ tag.tag_name }}</div>
+    {% for question in content %}
+		{% include 'question_preview.html' %}
+	{% endfor %}
+
+	{% include 'Paginator.html' %}
+{% endblock content %}

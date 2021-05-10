@@ -1,0 +1,34 @@
+{% load static %}
+<header>
+    <nav class="navbar navbar-light d-flex justify-content-between justify-content-md-around fixed-top bg-light align-items-middle" style="height: 81.6px">
+        <a class="navbar-brand border-primary h2" href="{% url 'index' %}">AskMe</a>
+
+
+        <form class="d-flex">
+            <a href="{% url 'ask' %}"> ask a question</a>
+        </form>
+        {% if request.user.is_authenticated %}
+        <div class="mr-md-0 d-flex mt-md-2 border rounded" style="margin-right: 200px">
+            <div class="row mx-2">
+                <img src="{{ request.user.profile.avatar.url }}" class="header-avatar rounded">
+            </div>
+            <div class="d-flex flex-column bd-highlight mb-2">
+                <div>
+                    <a href="#" class="h5 text-dark bg-light">{{ request.user.username }}</a>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <a class="mr-2" href="{% url 'edit_user' %}"> settings</a>
+                    <a class="mr-2" href="{% url 'logout' %}">logout</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="mr-md-0 d-flex mt-md-2 border rounded" style="margin-right: 400px; width: 200px">
+            <div class="d-flex justify-content-start mx-auto">
+                <a class="mr-2" href="{% url 'login' %}"> log in</a>
+                <a class="mr-2" href="{% url 'sign_up' %}"> sign up</a>
+            </div>
+        </div>
+        {% endif %}
+    </nav>
+</header>

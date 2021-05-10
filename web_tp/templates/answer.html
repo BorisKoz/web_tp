@@ -1,0 +1,22 @@
+{% load static %}
+<div class="row media d-flex flex-wrap border rounded mt-1">
+	<div class="d-flex px-1 mr-4 flex-column">
+		<img src="{{ answer.author.avatar.url}}" class="image-format mb-2" alt="...">
+        {% block likes %}
+                    <div class="d-flex flex-row">
+                        <div class = "p-2 mr-1 button btn-success rounded w-25">↑</div>
+                        <div class=" p-2 mr-1 h6">r:{{ answer.rating }}</div>
+                        <div class = "p-2 button btn-danger border rounded w-25">↓</div>
+
+                    </div>
+        {% endblock %}
+	</div>
+	<div class="media-body px-1">
+		<p>{{ answer.answer_text }}</p>
+		<div class="row">
+            <div class="d-flex flex-row">
+                <input type="checkbox" checked> Correct!</input>
+            </div>
+		</div>
+	</div>
+</div>

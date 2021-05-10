@@ -1,0 +1,9 @@
+<div class="d-flex flex-column ml-2">
+    <div class="p-2 mb-2">
+        <h4 class="text-dark">Popular Tags</h4>
+        <div class="d-flex flex-wrap">
+            {% for tag in most_rating %}
+                <a class="my-1 mr-2 text-dark" href="{% url 'tag_questions' tag.id %}">{{ tag.tag_name }}</a>
+            {% endfor %}
+        </div>
+    </div>
