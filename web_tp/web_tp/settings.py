@@ -23,14 +23,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ws3o32a(^2e1+%4tjhf&@v3&mloj&jtu^s)bvui*jz9l$$hhp&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_distill',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

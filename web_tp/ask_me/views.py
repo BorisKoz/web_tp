@@ -188,4 +188,8 @@ def is_correct(request):
     return JsonResponse({'action': correct})
 
 
+def static_page(request):
+    return render(request, 'static.html', {
+    })
+
 

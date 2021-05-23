@@ -19,6 +19,8 @@ from django.conf.urls import url, include
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from django_distill import distill_path
 
 from ask_me import views
 
@@ -36,5 +38,6 @@ urlpatterns = [
     path('ask/', views.ask, name='ask'),
     path('vote/', views.vote, name='vote'),
     path('correct/', views.is_correct, name='correct'),
+    path('static_page/', views.static_page, name='static_page'),
     url(r'^$', views.index, name='index'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,190 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>ask_me_bkz</title>
+
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-light d-flex justify-content-between justify-content-md-around fixed-top bg-light align-items-middle" style="height: 81.6px">
+        <a class="navbar-brand border-primary h2" href="/">AskMe</a>
+
+
+        <form class="d-flex">
+            <a href="/ask/"> ask a question</a>
+        </form>
+
+        <div class="mr-md-0 d-flex mt-md-2 border rounded" style="margin-right: 200px">
+            <div class="row mx-2">
+            </div>
+            <div class="d-flex flex-column bd-highlight mb-2">
+                <div>
+                    <a href="#" class="h5 text-dark bg-light">test_user_default</a>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <a class="mr-2" href="/profile/edit/"> settings</a>
+                    <a class="mr-2" href="/logout/">logout</a>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+
+	<main role="main">
+		<div class="container mt-4">
+			<div class="row">
+				<div class="col-8" style="margin-bottom: 10px">
+
+    <div class="row media d-flex flex-wrap content-mainbox">
+        <div class="d-flex px-1 mr-4 flex-column">
+
+
+                    <div class="d-flex flex-row justify-content-center">
+                        <button type="button" class = "js-vote p-2 mr-1 btn btn-success rounded w-25" data-type=question data-id="10019" data-action="like">↑</button>
+                        <div class= "p-2 mr-1 h6" id ="rating-10019">r:1</div>
+                        <button type="button" class = "js-vote p-2 button btn-danger border rounded w-25" data-type=question data-id="10019" data-action="dislike">↓</button>
+                    </div>
+
+
+        </div>
+        <div class="media-body px-1">
+            <a class="h4 mt-0">hehehe</a>
+            <p class="h5 mt-0">this is a quest</p>
+
+
+                <a class="mr-1" href="/tag/10012"><u>ssss</u></a>
+
+        </div>
+    </div>
+
+
+
+<div class="row media d-flex flex-wrap border rounded mt-1">
+	<div class="d-flex px-1 mr-4 flex-column">
+
+
+                    <div class="d-flex flex-row justify-content-center">
+                        <button type="button" class = "js-vote p-2 mr-1 btn btn-success rounded w-25" data-type=answer data-id="1007393" data-action="like">↑</button>
+                        <div class= "p-2 mr-1 h6" id ="rating-1007393">r:1</div>
+                        <button type="button" class = "js-vote p-2 button btn-danger border rounded w-25" data-type=answer data-id="1007393" data-action="dislike">↓</button>
+                    </div>
+
+
+	</div>
+	<div class="media-body px-1">
+		<p>my_answer</p>
+		<div class="row">
+            <div class="d-flex flex-row">
+
+                    <input class="js-correct" type="checkbox" data-id="1007393"  id="correct-1007393"  checked >
+                    <label class="form-check-label" for="correct-1007393">Correct!</label>
+
+            </div>
+        <div>
+        </div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row media d-flex flex-wrap border rounded mt-1">
+	<div class="d-flex px-1 mr-4 flex-column">
+
+
+                    <div class="d-flex flex-row justify-content-center">
+                        <button type="button" class = "js-vote p-2 mr-1 btn btn-success rounded w-25" data-type=answer data-id="1007394" data-action="like">↑</button>
+                        <div class= "p-2 mr-1 h6" id ="rating-1007394">r:0</div>
+                        <button type="button" class = "js-vote p-2 button btn-danger border rounded w-25" data-type=answer data-id="1007394" data-action="dislike">↓</button>
+                    </div>
+
+
+	</div>
+	<div class="media-body px-1">
+		<p>my_answer</p>
+		<div class="row">
+            <div class="d-flex flex-row">
+
+                    <input class="js-correct" type="checkbox" data-id="1007394"  id="correct-1007394" >
+                    <label class="form-check-label" for="correct-1007394">Correct!</label>
+
+            </div>
+        <div>
+        </div>
+		</div>
+	</div>
+</div>
+
+
+
+    <div class ="mr-3">Write an answer</div>
+
+
+    <form method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="nGBnpAqULCAGBMavQNuomkSdgbFJNAyUXgPLiXhMuavKcU6hFWYBUZQoWTnpCFEx">
+        <div class ="d-flex flex-row align-items-center">
+         <div class = "p-2 mr-1">
+
+                <div class="form-group row mt-2">
+                    <label class="col-sm-2 col-form-label">text</label>
+                    <div class="col-sm-10">
+                        <textarea name="text" cols="30" rows="5" class="form-control" required id="id_text">
+</textarea>
+                        <div class="invalid-feedback d-block">
+
+                        </div>
+                    </div>
+                </div>
+
+         </div>
+        <button type="submit" class = "p-2 mr-1 button btn-light rounded w-25" style="max-height:50px">submit</button>
+        </div>
+    </form>
+
+
+				</div>
+				<div class="col-4">
+					<div class="d-flex flex-column ml-2">
+    <div class="p-2 mb-2">
+        <h4 class="text-dark">Popular Tags</h4>
+        <div class="d-flex flex-wrap">
+
+                <a class="my-1 mr-2 text-dark" href="/tag/8824">tag_8823</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/645">tag_644</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/1800">tag_1799</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/2879">tag_2878</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/4356">tag_4355</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/4873">tag_4872</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/679">tag_678</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/1914">tag_1913</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/4089">tag_4088</a>
+
+                <a class="my-1 mr-2 text-dark" href="/tag/8517">tag_8516</a>
+
+        </div>
+    </div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted align-self-end">by Boris Kozhuro</span>
+  </div>
+</footer>
+
+</body>
+</html>
