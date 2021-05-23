@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.models import F
 from django.contrib.auth.models import User
 from random import sample
 
@@ -79,6 +80,7 @@ class Question(models.Model):
     number_of_responses = models.IntegerField(default=0)
     objects = MyMan2()
 
+
     def __str__(self):
         return self.title
 
@@ -98,6 +100,7 @@ class Answer(models.Model):
     answer_text = models.TextField(default='')
     created_on = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(default=0)
+    is_correct = models.BooleanField(default=False)
     objects = MyMan3()
 
     def __str__(self):
@@ -128,32 +131,35 @@ class RateQuestion(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
+            question = Question.objects.filter(pk=self.question.pk)
             if self.rating:
-                self.question.rating += 1
+                question.update(rating=F('rating')+1)
             else:
-                self.question.rating -= 1
-            self.question.save()
+                question.update(rating=F('rating')-1)
+            self.question = Question.objects.filter(pk=question.get().pk).get()
         super(RateQuestion, self).save(*args, **kwargs)
         return self.question.rating
 
     def delete(self, *args, **kwargs):
+        question = Question.objects.filter(pk=self.question.pk)
         if self.rating:
-            self.question.rating -= 1
+            question.update(rating=F('rating') - 1)
         else:
-            self.question.rating += 1
-        self.question.save()
+            question.update(rating=F('rating') + 1)
+        self.question = Question.objects.filter(pk=question.get().pk).get()
         super(RateQuestion, self).delete(*args, **kwargs)
         return self.question.rating
 
-    def change_attitude(self, *args, **kwargs):
-        if not self.rating:
-            self.rating = True
-            self.question.rating += 2
-        else:
+    def change(self, *args, **kwargs):
+        question = Question.objects.filter(pk=self.question.pk)
+        if self.rating:
             self.rating = False
-            self.question.rating -= 2
-        self.question.save()
-        super(RateQuestion, self).delete(*args, **kwargs)
+            question.update(rating=F('rating') - 2)
+        else:
+            self.rating = True
+            question.update(rating=F('rating') + 2)
+        self.question = Question.objects.filter(pk=question.get().pk).get()
+        super(RateQuestion, self).save(*args, **kwargs)
         return self.question.rating
 
     class Meta:
@@ -173,32 +179,35 @@ class RateAnswer(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
+            answer = Answer.objects.filter(pk=self.answer.pk)
             if self.rating:
-                self.answer.rating += 1
+                answer.update(rating=F('rating')+1)
             else:
-                self.answer.rating -= 1
-            self.answer.save()
+                answer.update(rating=F('rating')-1)
+            self.answer = Answer.objects.filter(pk=answer.get().pk).get()
         super(RateAnswer, self).save(*args, **kwargs)
         return self.answer.rating
 
     def delete(self, *args, **kwargs):
+        answer = Answer.objects.filter(pk=self.answer.pk)
         if self.rating:
-            self.answer.rating -= 1
+            answer.update(rating=F('rating') - 1)
         else:
-            self.answer.rating += 1
-        self.answer.save()
+            answer.update(rating=F('rating') + 1)
+        self.answer = Answer.objects.filter(pk=answer.get().pk).get()
         super(RateAnswer, self).delete(*args, **kwargs)
         return self.answer.rating
 
-    def change_attitude(self, *args, **kwargs):
+    def change(self, *args, **kwargs):
+        answer = Answer.objects.filter(pk=self.answer.pk)
         if self.rating:
             self.rating = False
-            self.answer.rating -= 2
+            answer.update(rating=F('rating') - 2)
         else:
             self.rating = True
-            self.answer.rating += 2
-        self.answer.save()
-        super(RateAnswer, self).delete(*args, **kwargs)
+            answer.update(rating=F('rating') + 2)
+        self.answer = Answer.objects.filter(pk=answer.get().pk).get()
+        super(RateAnswer, self).save(*args, **kwargs)
         return self.answer.rating
 
     class Meta:

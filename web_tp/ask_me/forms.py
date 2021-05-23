@@ -105,7 +105,8 @@ class ask_form(forms.Form):
         question = Question()
         question.author = self.u.profile
         question.title = self.cleaned_data['title']
-        question.text = self.cleaned_data['text']
+        question.question_text = self.cleaned_data['text']
+        question.number_of_responses = 0
         question.save()
 
         for tag in self.tags:

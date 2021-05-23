@@ -3,7 +3,6 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
-
     {% for field in form %}
         <div class="form-group row mt-2">
             <label class="col-sm-2 col-form-label">{{ field.label }}</label>

@@ -1,0 +1,13 @@
+{% if request.user.is_authenticated %}
+                    <div class="d-flex flex-row justify-content-center">
+                        <button type="button" class = "js-vote p-2 mr-1 btn btn-success rounded w-25" data-type={{ type }} data-id="{{ pk }}" data-action="like">↑</button>
+                        <div class= "p-2 mr-1 h6" id ="rating-{{ pk }}">r:{{ rating }}</div>
+                        <button type="button" class = "js-vote p-2 button btn-danger border rounded w-25" data-type={{ type }} data-id="{{ pk }}" data-action="dislike">↓</button>
+                    </div>
+            {% else %}
+                    <div class="d-flex flex-row justify-content-center">
+                        <div class = "js-not-authorized p-2 mr-1 button btn-success rounded w-25" data-type={{ type }} data-id="{{ pk }}" data-action="like">↑</div>
+                        <div class= "p-2 mr-1 h6" id ="rating-{{ pk }}">r:{{ rating }}</div>
+                        <div class = "js-not-authorized p-2 button btn-danger border rounded w-25" data-type={{ type }} data-id="{{ pk }}" data-action="dislike">↓</div>
+                    </div>
+            {% endif %}

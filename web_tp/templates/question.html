@@ -5,12 +5,7 @@
         <div class="d-flex px-1 mr-4 flex-column">
             <img src="{{ question.author.avatar.url}}" class="image-format mb-2" alt="...">
             {% block likes %}
-                    <div class="d-flex flex-row justify-content-center">
-                        <div class = "p-2 mr-1 button btn-success rounded w-25">↑</div>
-                        <div class=" p-2 mr-1 h6">r:{{ question.rating }}</div>
-                        <div class = "p-2 button btn-danger border rounded w-25">↓</div>
-
-                    </div>
+                    {% include 'likes.html' with type="question" pk=question.pk rating=question.rating %}
             {% endblock %}
         </div>
         <div class="media-body px-1">
@@ -24,7 +19,7 @@
     </div>
 
     {% for answer in content %}
-		{% include 'answer.html' %}
+		{% include 'answer.html' with  question=question %}
 	{% endfor %}
 
 	{% include 'Paginator.html' %}

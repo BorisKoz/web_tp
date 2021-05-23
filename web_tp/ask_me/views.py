@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
 from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator
 from django.http import JsonResponse, HttpResponseRedirect
@@ -134,14 +135,57 @@ def ask(request):
         form = ask_form(data=request.POST, user=request.user)
         if form.is_valid():
             quest = form.save()
-            previous = request.META.get('HTTP_REFERER')
-            if previous is not None:
-                return one_question(request, quest.pk)
+            return redirect('question', quest.pk)
     most_rating = Tag.objects.popular_sort()
     return render(request, 'ask.html', {
         'form': form,
         'most_rating': most_rating,
     })
+
+
+@require_POST
+@login_required
+def vote(request):
+    data = request.POST
+    action = ()
+    rating = 0
+    content_id = data['id']
+    is_like = (data['action'] == 'like')
+    if data['type'] == 'question':
+        if not RateQuestion.objects.filter(question_id=content_id, author=request.user.profile).exists():
+            like = RateQuestion(question_id=content_id, author=request.user.profile, rating=is_like)
+            rating = like.save()
+        else:
+            like = RateQuestion.objects.get(question_id=content_id, author_id=request.user.profile)
+            if is_like == like.rating:
+                rating = like.delete()
+            else:
+                rating = like.change()
+    elif data['type'] == 'answer':
+        if not RateAnswer.objects.filter(answer_id=content_id, author__user_id=request.user).exists():
+            like = RateAnswer(answer_id=content_id, author=request.user.profile, rating=is_like)
+            rating = like.save()
+        else:
+            like = RateAnswer.objects.get(answer_id=content_id, author__user_id=request.user)
+            if is_like == like.rating:
+                rating = like.delete()
+            else:
+                rating = like.change()
+    return JsonResponse({'rating': rating})
+
+@require_POST
+@login_required
+def is_correct(request):
+    data = request.POST
+    content_id = data['id']
+    answer = Answer.objects.filter(pk=content_id)
+    count = Answer.objects.filter(question_id=answer.get().question.id, is_correct=True).count()
+    if count == 1 or answer.get().is_correct:
+        correct = False
+    else:
+        correct = True
+    answer.update(is_correct=correct)
+    return JsonResponse({'action': correct})
 
 
 

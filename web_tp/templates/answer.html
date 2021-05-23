@@ -3,20 +3,23 @@
 	<div class="d-flex px-1 mr-4 flex-column">
 		<img src="{{ answer.author.avatar.url}}" class="image-format mb-2" alt="...">
         {% block likes %}
-                    <div class="d-flex flex-row">
-                        <div class = "p-2 mr-1 button btn-success rounded w-25">↑</div>
-                        <div class=" p-2 mr-1 h6">r:{{ answer.rating }}</div>
-                        <div class = "p-2 button btn-danger border rounded w-25">↓</div>
-
-                    </div>
+            {% include 'likes.html' with type="answer" pk=answer.pk rating=answer.rating %}
         {% endblock %}
 	</div>
 	<div class="media-body px-1">
 		<p>{{ answer.answer_text }}</p>
 		<div class="row">
             <div class="d-flex flex-row">
-                <input type="checkbox" checked> Correct!</input>
+                {% if question.author == request.user.profile %}
+                    <input class="js-correct" type="checkbox" data-id="{{ answer.pk }}"  id="correct-{{ answer.pk }}" {% if answer.is_correct %} checked {% endif %}>
+                    <label class="form-check-label" for="correct-{{ answer.pk }}">Correct!</label>
+                {% else %}
+                    <input type="checkbox" data-id="{{ answer.pk }}"  id="correct-{{ answer.pk }}" {% if answer.is_correct %} checked {% endif %} disabled>
+                    <label class="form-check-label" for="correct-{{ answer.pk }}">Correct!</label>
+                {% endif %}
             </div>
+        <div>
+        </div>
 		</div>
 	</div>
 </div>
